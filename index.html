@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<!--JQUERY LIBRARIES-->
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--ANGULARJS LIBRARIES-->
+<script src= 
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"> 
+    </script> 
+
+
+<!--FONT-FAMILIES USED-->
+<link href='https://fonts.googleapis.com/css?family=Arbutus' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Amiko' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Advent Pro' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Archivo' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Flamenco' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+
+<!--CSS FILES BEEN USED-->
+<link rel="stylesheet" href="Css/indexCss.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<meta name="theme-color" content="rgb(190, 214, 148)">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+	<title>Learning</title>
+
+</head>
+<body>
+
+	<div id="backgroundC">
+		<div id="leftC"></div>
+		<div id="rightC">
+			<div id="headerC">
+				<h1>Δρομολόγια Λεωφορείων - Υπ.Ελ.Δ</h1>
+				<img id="Img1">
+			</div>
+
+			<div id="contentC">
+				<p id="lbl1">ΕΠΙΛΕΞΕ ΔΡΟΜΟΛΟΓΙΟ</p>
+				<div id="divLblDep">
+					<div id="lbl2">ΣΗΜΕΙΟ ΑΝΑΧΩΡΗΣΗΣ: </div>
+				</div>
+				<div id="divDep">
+					<select id="branchesDepartureList" name="Branches"></select>
+				</div>
+				<div id="divLblArrive">
+					<div id="lbl3">ΣΗΜΕΙΟ ΠΡΟΟΡΙΣΜΟΥ: </div>
+				</div>
+				<div id="divArrive">
+					<select id="branchesArriveList" name="Branches"></select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+		var options = ["Κατερίνη", "Θεσσαλονίκη"];
+
+		//CREATION OF DEPARTURE SELECT
+		var selectBranchDep = document.getElementById("branchesDepartureList");
+		for(var i = 0; i < options.length; i++) {
+			console.log(options[i]);
+			var option = document.createElement("option");
+			option.text = options[i];
+			selectBranchDep.add(option);
+		}
+
+		//ON SELECT OF NEW BRANCH TRIGGER
+		selectBranchDep.addEventListener('change', function() {
+    		
+			//CREATION OF ARRIVAL SELECT
+			var selectBranchArr = document.getElementById("branchesArriveList");
+			selectBranchArr.innerHTML = "";
+
+    		for(var i = 0; i < options.length; i++) {
+				console.log(options[i]);
+				if(selectBranchDep.value != options[i]) {
+					var option = document.createElement("option");
+					option.text = options[i];
+					selectBranchArr.add(option)
+				}
+			}
+		});
+
+		//CONSTRUCTORS IN JAVASCRIPT
+		//CREATION OF ROUTE OBJECT
+		function Route(dep, arr, timeDep, timeArr) {
+			this.dep = dep;
+			this.arr = arr;
+			this.timeDep = timeDep;
+			this.timeArr = timeArr;
+		}
+
+		//CREATION OF BRANCH OBJECT
+		function Branch(day, listOfDeps, listOfArr) {
+			this.day = day;
+			this.listOfDeps = listOfDeps;
+			this.listOfArr = listOfArr;
+		}
+
+	</script>
+
+</body>
+</html>
